@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- crea y elimina el esquema en cada deploy -->
+		<!-- property name="hbm2ddl.auto">create-drop</property> -->
+		<!-- property name="hbm2ddl.auto">none</property -->
+		<property name="hbm2ddl.auto">create</property>  
+
+		<mapping class="model.Factura" />
+		<mapping class="model.Cliente" />	
+		<mapping class="model.Detalle" />
+		<mapping class="model.Cuenta" />		
+		<mapping class="model.Precio" />
+		<mapping class="model.Producto" />	
+		<mapping class="model.Proveedor" />
+
+	</session-factory>
+
+</hibernate-configuration>

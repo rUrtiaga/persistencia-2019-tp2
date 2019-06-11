@@ -1,0 +1,1 @@
+create database `tp-2-hibernate` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
