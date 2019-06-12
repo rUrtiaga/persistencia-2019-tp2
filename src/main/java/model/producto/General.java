@@ -12,8 +12,9 @@ public class General extends Producto {
 		super();
 	}
 
-	public General(double peso) {
-		super();
+	public General(String codigo,String desc,BigDecimal monto,double peso) {
+		super(codigo,desc,monto);
+		this.setPeso(peso);
 	}
 
 	@Override

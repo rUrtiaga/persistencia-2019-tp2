@@ -22,7 +22,7 @@ import utils.HibernateUtil;
 import utils.Pair;
 
 @TestMethodOrder(Alphanumeric.class)
-class Tp_2_request{
+class Tp_2_A{
 	static Session session;
 	
 	@AfterAll
