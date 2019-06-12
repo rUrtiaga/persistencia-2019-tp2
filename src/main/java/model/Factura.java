@@ -48,6 +48,7 @@ public class Factura {
 	public Factura(Cliente cliente, ArrayList<Entry<Producto, Integer>> productosConCantidad) {
 		this.setCliente(cliente);
 		this.productosToDetallles(productosConCantidad);
+		this.setFecha(LocalDateTime.now());
 	}
 	
 	
