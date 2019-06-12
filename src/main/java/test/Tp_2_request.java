@@ -14,8 +14,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import model.Cliente;
 import model.Factura;
-import model.Producto;
 import model.Proveedor;
+import model.producto.Frio;
+import model.producto.Gondola;
+import model.producto.Producto;
 import utils.HibernateUtil;
 import utils.Pair;
 
@@ -31,7 +33,7 @@ class Tp_2_request{
 	@org.junit.jupiter.api.Test
 	void punto_5() {
 
-		session= HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		
 		Cliente cli0 = new Cliente("22","El Loco","Juan");
 		Cliente cli1 = new Cliente("23","Castas","Juan");
@@ -84,9 +86,9 @@ class Tp_2_request{
 	void punto_7() {
 		session= HibernateUtil.getSessionFactory().openSession();
 		
-		Producto p0 = new Producto("A3A","Salchichas",new BigDecimal(23.3));
-		Producto p1 = new Producto("A3B","Harina",new BigDecimal(15.00));
-		Producto p2 = new Producto("A3C","Leche",new BigDecimal(25.5));
+		Frio p0 = new Frio("A3A","Salchichas",new BigDecimal(23.3));
+		Gondola p1 = new Gondola("A3B","Harina",new BigDecimal(15.00),2);
+		Gondola p2 = new Gondola("A3C","Leche",new BigDecimal(25.5),10);
 
 		try {
 			session.beginTransaction();
@@ -147,7 +149,7 @@ class Tp_2_request{
 		session= HibernateUtil.getSessionFactory().openSession();
 		
 			//Creo el producto
-			Producto pro0 = new Producto("B3E","Cacao");
+			Producto pro0 = new Gondola("B3E","Cacao",233);
 
 			try {
 				//Persisto el producto en una transaccion

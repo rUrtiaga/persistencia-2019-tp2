@@ -1,6 +1,6 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import model.producto.Producto;
+
 
 @Entity(name="Factura")
 @Table(name="FACTURA")
@@ -31,8 +33,7 @@ public class Factura {
 	private int id;
 	@ManyToOne
 	private Cliente cliente;
-
-	private LocalDateTime fecha;
+	private LocalDate fecha;
 	//ejemplo con algunos name
 	@Column(name="numero",length=8, nullable=false,unique = true)
 	@Type(type="integer")
@@ -48,6 +49,7 @@ public class Factura {
 	public Factura(Cliente cliente, ArrayList<Entry<Producto, Integer>> productosConCantidad) {
 		this.setCliente(cliente);
 		this.productosToDetallles(productosConCantidad);
+		this.setFecha(LocalDate.now());
 	}
 	
 	
@@ -83,10 +85,10 @@ public class Factura {
 		this.id = id;
 	}
 	
-	public LocalDateTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

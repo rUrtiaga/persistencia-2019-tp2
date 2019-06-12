@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
+import model.producto.Producto;
+
 
 @Entity(name="Proveedor")
 @Table(name="PROVEEDOR")

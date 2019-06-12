@@ -1,4 +1,4 @@
-package model;
+package model.producto;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,22 +10,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
+
+import model.Precio;
+import model.Proveedor;
 
 @Entity(name="Producto")
 @Table(name="PRODUCTO")
-public class Producto {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Producto {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="nativoDeBaseDeDatos")
-	@GenericGenerator(name="nativoDeBaseDeDatos", strategy="native")
+	@GeneratedValue
+	//(strategy=GenerationType.AUTO, generator="nativoDeBaseDeDatos")
+//	@GenericGenerator(name="nativoDeBaseDeDatos", strategy="native") 
 	private Long id;
 	@NaturalId
 	@Column(unique = true)
@@ -53,10 +58,21 @@ public class Producto {
 		this.descripcion = desc;
 	}
 
+	
+	//Methodos abstractos
+	public abstract BigDecimal getPrecioFinal();
+	
+	protected BigDecimal calcularPrecioConRecargo(double procentajeDeRecargo) {
+		BigDecimal monto = this.getPrecio().getMonto();
+		return monto.multiply(new BigDecimal(procentajeDeRecargo)).add(monto);
+	}
+
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -109,5 +125,4 @@ public class Producto {
 	public void newPrecio(BigDecimal precio) {
 		this.precio = new Precio(precio,this);
 	}
-	
 }

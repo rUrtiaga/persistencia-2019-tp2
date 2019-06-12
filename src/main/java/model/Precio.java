@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import model.producto.Producto;
+
 
 @Entity(name="Precio")
 @Table(name="PRECIO")
